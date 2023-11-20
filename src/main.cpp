@@ -1,5 +1,5 @@
 #include <iostream>
-#include <LinkedList.h>
+#include "linkedlist/LinkedList.h"
 
 int main() {
     std::cout << "aHello, World! a" << std::endl;

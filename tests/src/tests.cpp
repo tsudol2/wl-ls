@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <LinkedList.h>
+#include "../../src/linkedlist/LinkedList.h"
 
 TEST(WLLSTestSuite, LinkedList){
     LinkedList ll(1);

@@ -7,7 +7,7 @@
 
 class LinkedList;
 
-#include <LLNode.h>
+#include "linkedlistnode/LLNode.h"
 
 class LinkedList {
 public:
