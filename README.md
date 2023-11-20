@@ -12,5 +12,5 @@ Or manually run commands from root directory:
     cd build
     make && make install
     cd ..
-    ./wl-ls
-    ./wl-gtest
+    ./bin/wl-ls
+    ./bin/wl-gtest
