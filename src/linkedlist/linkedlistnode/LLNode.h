@@ -11,10 +11,11 @@ public:
     LLNode(int);
     int getVal();
     LLNode* getNext();
+
+    LLNode* _next;
 private:
 protected:
     int _val;
-    LLNode* _next;
 };
 
 #endif //WL_LS_LLNODE_H

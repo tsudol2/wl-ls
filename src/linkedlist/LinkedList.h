@@ -12,11 +12,24 @@ class LinkedList;
 class LinkedList {
 public:
     LinkedList();
-    LinkedList(int);
+    explicit LinkedList(int);
+    ~LinkedList();
+    LinkedList(const LinkedList&);
+    LinkedList& operator=(const LinkedList&);
+    LinkedList& insert(int);
+    LinkedList& replaceAt(int);
+    int valueAt();
+    std::vector<int> toVector();
+    void copy();
+    bool isEmpty();
     void print();
 private:
+    void _checkLinkedList();
+    void _copy();
 protected:
     LLNode* _head;
+    LLNode* _tail;
+    int _size;
 };
 
 #endif //WL_LS_LINKEDLIST_H
