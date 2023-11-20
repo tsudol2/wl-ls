@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.27.6)
+project(linkedlistnode)
+
+set(LLNODE_SOURCE_FILES
+    LLNode.cpp
+    LLNode.h
+)
+
+add_library(${PROJECT_NAME} SHARED STATIC ${LLNODE_SOURCE_FILES})
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${WLLS_INSTALL_LIB_DIR})
+install(FILES LLNode.h DESTINATION ${WLLS_INSTALL_INCLUDE_DIR})
