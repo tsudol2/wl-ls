@@ -1,2 +1,2 @@
 #! /bin/sh
-mkdir -p build/ && cd build/ ; make && make install
+cd build/ ; make && make install

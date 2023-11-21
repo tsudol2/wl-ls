@@ -18,6 +18,6 @@ Manually run commands from project root directory:
     ./bin/wl-ls
     ./bin/wl-gtest
 
-Project can also be built for xcode using the script:
+Project can also be configured for xcode using the script:
 
-    ./build_xcode.sh
+    ./configure_xcode.sh
