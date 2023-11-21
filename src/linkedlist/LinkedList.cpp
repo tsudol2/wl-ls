@@ -31,9 +31,22 @@ LinkedList::~LinkedList() {
     tail_ = nullptr;
 }
 
-// TODO: implement
-LinkedList::LinkedList(const LinkedList &) {
-    ;
+// Copy constructor, performs a deep copy
+LinkedList::LinkedList(const LinkedList &other) {
+    if (other.head_ == nullptr) { return; }
+
+    LLNode* temp = other.head_;
+    head_ = new LLNode(other.head_->getVal());
+    head_->next = nullptr;
+    LLNode* cur = head_;
+
+    temp = temp->next;
+    while (temp != nullptr) {
+        cur->next = new LLNode(temp->getVal());
+        cur = cur->next;
+        cur->next = nullptr;
+        temp = temp->next;
+    }
 }
 
 // TODO: implement
@@ -53,7 +66,7 @@ LinkedList &LinkedList::insert(int val) {
     auto* newNode = new LLNode(val);
     if (isEmpty()) {
         head_ = newNode;
-        tail_ = head_; 
+        tail_ = head_;
     } else {
         tail_->next = newNode;
         tail_ = newNode;
@@ -74,16 +87,6 @@ int LinkedList::valueAt() {
 
 // TODO: implement
 void LinkedList::checkLinkedList_() {
-    ;
-}
-
-// TODO: implement
-void LinkedList::deepCopy_() {
-    ;
-}
-
-// TODO: implement
-void LinkedList::copy() {
     ;
 }
 

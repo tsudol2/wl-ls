@@ -20,12 +20,10 @@ public:
     LinkedList& insert(int);
     LinkedList& replaceAt(int);
     int valueAt();
-    void copy();
     std::vector<int> toVector();
     void print();
 private:
     void checkLinkedList_();
-    void deepCopy_();
 protected:
     LLNode* head_{};
     LLNode* tail_{};
