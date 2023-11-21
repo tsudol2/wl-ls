@@ -28,6 +28,7 @@ LinkedList::~LinkedList() {
         delete cur;
         cur = temp;
     }
+    delete cur;
 }
 
 // TODO: implement
