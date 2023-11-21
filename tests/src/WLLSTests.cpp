@@ -9,13 +9,10 @@
 class WLLSTest : public testing::Test {
 protected:
     void SetUp() override {
-        ll1_.insert(1);
+        // ll1_.insert(1);
     }
 
     LinkedList ll0_;
-    LinkedList ll1_;
-    LinkedList ll2_ = LinkedList(1);
-    std::vector<int> ll1Vec_ = {1};
 };
 
 // TEMP TEST

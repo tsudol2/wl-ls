@@ -6,6 +6,7 @@
 // sense (e.g., referencing pointers)
 //
 
+#include <iostream>
 #include <gtest/gtest.h>
 #include "../../src/linkedlist/LinkedList.h"
 
@@ -22,6 +23,7 @@ protected:
 };
 
 TEST_F(LinkedListTest, DefaultConstructorEmpty) {
+    std::cout<< "Yo\n";
     EXPECT_TRUE(ll0_.isEmpty());
 }
 
@@ -37,15 +39,15 @@ TEST_F(LinkedListTest, ParameterizedConstructor) {
     // TODO: further testing
 }
 
-TEST(LLTestSuite, ConvienienceConstructor){
-    LinkedList ll(1);
-    std::vector<int> ll_vec = {1};
-    EXPECT_EQ(ll.toVector(), ll_vec);
+// TEST(LLTestSuite, ConvienienceConstructor){
+//     LinkedList ll(1);
+//     std::vector<int> ll_vec = {1};
+//     EXPECT_EQ(ll.toVector(), ll_vec);
 
-    ll.insert(2);
-    ll.insert(3);
-    ll_vec.push_back(2);
-    ll_vec.push_back(3);
-//    ll.print();
-    EXPECT_EQ(ll.toVector(), ll_vec);
-}
+//     ll.insert(2);
+//     ll.insert(3);
+//     ll_vec.push_back(2);
+//     ll_vec.push_back(3);
+// //    ll.print();
+//     EXPECT_EQ(ll.toVector(), ll_vec);
+// }

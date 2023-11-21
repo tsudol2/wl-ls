@@ -7,8 +7,7 @@
 
 // Default constructor
 LinkedList::LinkedList() {
-    head_ = new LLNode();
-    tail_ = nullptr;
+    head_ = tail_ = nullptr;
     size_ = 0;
 }
 
@@ -28,7 +27,8 @@ LinkedList::~LinkedList() {
         delete cur;
         cur = temp;
     }
-    delete cur;
+    head_ = nullptr;
+    tail_ = nullptr;
 }
 
 // TODO: implement
@@ -53,9 +53,10 @@ LinkedList &LinkedList::insert(int val) {
     auto* newNode = new LLNode(val);
     if (isEmpty()) {
         head_ = newNode;
+        tail_ = head_; 
     } else {
         tail_->next = newNode;
-        tail_ = tail_->next;
+        tail_ = newNode;
     }
     size_ += 1;
     return *this;
