@@ -1,1 +1,1 @@
-mkdir build/ && cd build/ && cmake -S ../ -G "Xcode" && cd ../
+cd build/ && cmake -S ../ -G "Xcode" && cd ../
