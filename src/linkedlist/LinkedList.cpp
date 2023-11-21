@@ -7,53 +7,100 @@
 
 // Default constructor
 LinkedList::LinkedList() {
-    _head = new LLNode();
-    _tail = nullptr;
-    _size = 0;
+    head_ = new LLNode();
+    tail_ = nullptr;
+    size_ = 0;
 }
 
 // Convenience constructor
 LinkedList::LinkedList(int val) {
-    _head = new LLNode(val);
-    _tail = _head;
-    _size = 1;
+    head_ = new LLNode(val);
+    tail_ = head_;
+    size_ = 1;
 }
 
 // Destructor
 LinkedList::~LinkedList() {
-    LLNode* cur = _head;
+    LLNode* cur = head_;
     LLNode* temp;
     while (cur != nullptr) {
-        temp = cur->_next;
+        temp = cur->next;
         delete cur;
         cur = temp;
     }
 }
 
-//
-// Given val is inserted at the end of the list
-//
-LinkedList &LinkedList::insert(int val) {
-    LLNode* newNode = new LLNode(val);
-    _tail->_next = newNode;
-    _tail = _tail->_next;
+// TODO: implement
+LinkedList::LinkedList(const LinkedList &) {
+    ;
+}
+
+// TODO: implement
+LinkedList &LinkedList::operator=(const LinkedList &) {
     return *this;
 }
 
+// Returns true if list is empty
+bool LinkedList::isEmpty() const {
+    return (size_ == 0);
+}
+
+//
+// Arg val is inserted at the end of the list
+//
+LinkedList &LinkedList::insert(int val) {
+    auto* newNode = new LLNode(val);
+    if (isEmpty()) {
+        head_ = newNode;
+    } else {
+        tail_->next = newNode;
+        tail_ = tail_->next;
+    }
+    size_ += 1;
+    return *this;
+}
+
+// TODO: implement
+LinkedList &LinkedList::replaceAt(int) {
+    return *this;
+}
+
+// TODO: implement
+int LinkedList::valueAt() {
+    return 0;
+}
+
+// TODO: implement
+void LinkedList::checkLinkedList_() {
+    ;
+}
+
+// TODO: implement
+void LinkedList::deepCopy_() {
+    ;
+}
+
+// TODO: implement
+void LinkedList::copy() {
+    ;
+}
+
+// Returns a vector containing all elements of the list
+std::vector<int> LinkedList::toVector() {
+    std::vector<int> list;
+    LLNode* cur = head_;
+    while(cur != nullptr) {
+        list.push_back(cur->getVal());
+        cur = cur->next;
+    }
+    return list;
+}
+
+// Print list to std out
 void LinkedList::print() {
     std::vector<int> list = toVector();
     for (auto& e : list) {
         std::cout << e << ' ';
     }
     std::cout << std::endl;
-}
-
-std::vector<int> LinkedList::toVector() {
-    std::vector<int> list;
-    LLNode* cur = _head;
-    while(cur != nullptr) {
-        list.push_back(cur->getVal());
-        cur = cur->_next;
-    }
-    return list;
 }

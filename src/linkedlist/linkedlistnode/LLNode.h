@@ -1,5 +1,5 @@
 //
-// Created by Tyler Sudol
+// Created by Tyler Sudol on 11/18/23.
 //
 
 #ifndef WL_LS_LLNODE_H
@@ -8,14 +8,11 @@
 class LLNode {
 public:
     LLNode();
-    LLNode(int);
+    explicit LLNode(int);
     int getVal();
-    LLNode* getNext();
-
-    LLNode* _next;
+    LLNode* next;
 private:
-protected:
-    int _val;
+    int val_;
 };
 
 #endif //WL_LS_LLNODE_H

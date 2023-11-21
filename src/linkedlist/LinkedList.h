@@ -16,20 +16,20 @@ public:
     ~LinkedList();
     LinkedList(const LinkedList&);
     LinkedList& operator=(const LinkedList&);
+    bool isEmpty() const;
     LinkedList& insert(int);
     LinkedList& replaceAt(int);
     int valueAt();
-    std::vector<int> toVector();
     void copy();
-    bool isEmpty();
+    std::vector<int> toVector();
     void print();
 private:
-    void _checkLinkedList();
-    void _copy();
+    void checkLinkedList_();
+    void deepCopy_();
 protected:
-    LLNode* _head;
-    LLNode* _tail;
-    int _size;
+    LLNode* head_{};
+    LLNode* tail_{};
+    int size_{};
 };
 
 #endif //WL_LS_LINKEDLIST_H

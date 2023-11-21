@@ -1,25 +1,21 @@
 //
-// Created by Tyler Sudol
+// Created by Tyler Sudol on 11/18/23.
 //
 
 #include "LLNode.h"
 
 // Default Constructor
 LLNode::LLNode() {
-    _val = 0;
-    _next = nullptr;
+    val_ = 0;
+    next = nullptr;
 }
 
 // Convenience Constructor
 LLNode::LLNode(int val) {
-    _val = val;
-    _next = nullptr;
+    val_ = val;
+    next = nullptr;
 }
 
 int LLNode::getVal() {
-    return _val;
-}
-
-LLNode* LLNode::getNext() {
-    return _next;
+    return val_;
 }
