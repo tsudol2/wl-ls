@@ -20,7 +20,6 @@ LinkedList::LinkedList(int val) {
 
 // Private helper function, recursively deletes the LinkedList and frees memory
 void LinkedList::recursiveDelete_(LLNode* node) {
-    std::cout << "Recursive Delete Invoked\n";
     if (node->next != nullptr) {
         recursiveDelete_(node->next);
     }
@@ -29,7 +28,6 @@ void LinkedList::recursiveDelete_(LLNode* node) {
 
 // Destructor
 LinkedList::~LinkedList() {
-    std::cout << "Destructor Invoked\n";
     if (head_) {
         recursiveDelete_(head_);
     }
@@ -37,14 +35,7 @@ LinkedList::~LinkedList() {
 
 // Helper function copies the LinkedList provided as an argument,
 // performs a deep copy and returns the reference to the new LinkedList
-LinkedList& LinkedList::copyList_(LLNode* node) {
-    
-    return *this;
-}
-
-// Copy constructor, performs a deep copy
-LinkedList::LinkedList(const LinkedList &other) {
-    std::cout << "Copy constructor Invoked\n";
+void LinkedList::copyList_(const LinkedList &other) {
     if (other.head_ == nullptr) {
         head_ = tail_ = nullptr;
         size_ = 0;
@@ -53,33 +44,29 @@ LinkedList::LinkedList(const LinkedList &other) {
         head_ = new LLNode(other.head_->val);
         LLNode* cur = head_;
         LLNode* other_next = other.head_->next;
-        
+
         while(other_next) {
             LLNode* cur_next = new LLNode(other_next->val);
             cur->next = cur_next;
             other_next = other_next->next;
             cur = cur_next;
         }
-        
+
         cur->next = nullptr;
         tail_ = cur;
         size_ = other.size_;
     }
 }
 
+// Copy constructor, performs a deep copy
+LinkedList::LinkedList(const LinkedList &other) {
+    copyList_(other);
+}
+
 // Assignment operator
 LinkedList &LinkedList::operator=(const LinkedList &other) {
-    std::cout << "Assignment Operator Invoked\n";
-    if (head_) {
-        recursiveDelete_(head_);
-    }
-    
-    if (&other != this) {
-        head_ = other.head_;
-        tail_ = other.tail_;
-        size_ = other.size_;
-    }
-
+    LinkedList temp(other);
+    std::swap(temp.head_, head_);
     return *this;
 }
 

@@ -66,4 +66,7 @@ TEST_F(LinkedListTest, AssignmentOperator) {
     LinkedList ll;
     ll = ll2_;
     EXPECT_EQ(ll.toVector(), ll2_.toVector());
+    ll.insert(2);
+    ll.print();
+    ll2_.print();
 }
