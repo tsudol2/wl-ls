@@ -6,16 +6,12 @@
 
 // Default Constructor
 LLNode::LLNode() {
-    val_ = 0;
+    val = 0;
     next = nullptr;
 }
 
 // Convenience Constructor
-LLNode::LLNode(int val) {
-    val_ = val;
+LLNode::LLNode(int x) {
+    val = x;
     next = nullptr;
-}
-
-int LLNode::getVal() {
-    return val_;
 }

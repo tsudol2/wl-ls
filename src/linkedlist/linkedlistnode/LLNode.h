@@ -9,10 +9,8 @@ class LLNode {
 public:
     LLNode();
     explicit LLNode(int);
-    int getVal();
     LLNode* next;
-private:
-    int val_;
+    int val;
 };
 
 #endif //WL_LS_LLNODE_H

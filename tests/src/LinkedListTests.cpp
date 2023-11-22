@@ -44,7 +44,26 @@ TEST_F(LinkedListTest, ParameterizedConstructorToVec) {
     EXPECT_EQ(ll2_.toVector(), ll2Vector_);
 }
 
-TEST_F(LinkedListTest, CopyConstructor) {
+TEST_F(LinkedListTest, CopyConstructorDefaultConstructorEmpty) {
     LinkedList ll = ll0_;
     EXPECT_EQ(ll.isEmpty(), ll0_.isEmpty());
 }
+
+TEST_F(LinkedListTest, CopyConstructorCheckDeepCopy) {
+    LinkedList ll = ll0_;
+    ll.insert(1);
+    EXPECT_FALSE(ll.isEmpty() == ll0_.isEmpty());
+    EXPECT_FALSE(ll.toVector() == ll0_.toVector());
+    EXPECT_EQ(ll.toVector(), ll1_.toVector());
+}
+
+TEST_F(LinkedListTest, CopyConstructorCheckDeepCopyCont) {
+    LinkedList ll = ll2_;
+    EXPECT_EQ(ll.toVector(), ll2_.toVector());
+}
+
+//TEST_F(LinkedListTest, AssignmentOperator) {
+//    LinkedList ll;
+//    ll = ll2_;
+//    EXPECT_EQ(ll.toVector(), ll2_.toVector());
+//}

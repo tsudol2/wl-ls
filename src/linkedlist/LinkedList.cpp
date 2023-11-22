@@ -18,6 +18,19 @@ LinkedList::LinkedList(int val) {
     size_ = 1;
 }
 
+// Private helper function, deletes list and frees memory
+void LinkedList::deleteList_() {
+    LLNode* cur = head_;
+    LLNode* temp;
+    while (cur != nullptr) {
+        temp = cur->next;
+        delete cur;
+        cur = temp;
+    }
+    head_ = nullptr;
+    tail_ = nullptr;
+}
+
 // Destructor
 LinkedList::~LinkedList() {
     LLNode* cur = head_;
@@ -31,26 +44,61 @@ LinkedList::~LinkedList() {
     tail_ = nullptr;
 }
 
-// Copy constructor, performs a deep copy
-LinkedList::LinkedList(const LinkedList &other) {
-    if (other.head_ == nullptr) { return; }
+// TODO: Fix copy function
+LinkedList& LinkedList::copyList_(const LinkedList& other) {
+    head_ = new LLNode;
+    if (other.head_ != nullptr) {
+        head_->val = other.head_->val;
+    }
 
-    LLNode* temp = other.head_;
-    head_ = new LLNode(other.head_->getVal());
-    head_->next = nullptr;
+    tail_ = other.tail_;
+    size_ = other.size_;
     LLNode* cur = head_;
 
-    temp = temp->next;
-    while (temp != nullptr) {
-        cur->next = new LLNode(temp->getVal());
-        cur = cur->next;
-        cur->next = nullptr;
-        temp = temp->next;
+    if (other.head_ != nullptr) {
+        LLNode *temp = other.head_->next;
+        while (temp != nullptr) {
+            cur->next = new LLNode(temp->val);
+            cur = cur->next;
+            cur->next = nullptr;
+            temp = temp->next;
+        }
+    }
+    return *this;
+}
+
+// Copy constructor, performs a deep copy
+LinkedList::LinkedList(const LinkedList &other) {
+    head_ = new LLNode;
+    if (other.head_ != nullptr) {
+        head_->val = other.head_->val;
+    }
+
+    tail_ = other.tail_;
+    size_ = other.size_;
+    LLNode* cur = head_;
+
+    if (other.head_ != nullptr) {
+        LLNode *temp = other.head_->next;
+        while (temp != nullptr) {
+            cur->next = new LLNode(temp->val);
+            cur = cur->next;
+            cur->next = nullptr;
+            temp = temp->next;
+        }
     }
 }
 
-// TODO: implement
-LinkedList &LinkedList::operator=(const LinkedList &) {
+// Assignment operator
+LinkedList &LinkedList::operator=(const LinkedList &other) {
+    deleteList_();
+
+    if (&other != this) {
+        head_ = other.head_;
+        tail_ = other.tail_;
+        size_ = other.size_;
+    }
+
     return *this;
 }
 
@@ -95,7 +143,7 @@ std::vector<int> LinkedList::toVector() {
     std::vector<int> list;
     LLNode* cur = head_;
     while(cur != nullptr) {
-        list.push_back(cur->getVal());
+        list.push_back(cur->val);
         cur = cur->next;
     }
     return list;
