@@ -62,8 +62,8 @@ TEST_F(LinkedListTest, CopyConstructorCheckDeepCopyCont) {
     EXPECT_EQ(ll.toVector(), ll2_.toVector());
 }
 
-//TEST_F(LinkedListTest, AssignmentOperator) {
-//    LinkedList ll;
-//    ll = ll2_;
-//    EXPECT_EQ(ll.toVector(), ll2_.toVector());
-//}
+TEST_F(LinkedListTest, AssignmentOperator) {
+    LinkedList ll;
+    ll = ll2_;
+    EXPECT_EQ(ll.toVector(), ll2_.toVector());
+}

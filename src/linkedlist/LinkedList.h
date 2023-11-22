@@ -24,8 +24,8 @@ public:
     void print();
 private:
     void checkLinkedList_();
-    void deleteList_();
-    LinkedList&  copyList_(const LinkedList&);
+    void recursiveDelete_(LLNode*);
+    LinkedList& copyList_(LLNode*);
 protected:
     LLNode* head_{};
     LLNode* tail_{};

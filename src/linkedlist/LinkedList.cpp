@@ -18,81 +18,62 @@ LinkedList::LinkedList(int val) {
     size_ = 1;
 }
 
-// Private helper function, deletes list and frees memory
-void LinkedList::deleteList_() {
-    LLNode* cur = head_;
-    LLNode* temp;
-    while (cur != nullptr) {
-        temp = cur->next;
-        delete cur;
-        cur = temp;
+// Private helper function, recursively deletes the LinkedList and frees memory
+void LinkedList::recursiveDelete_(LLNode* node) {
+    std::cout << "Recursive Delete Invoked\n";
+    if (node->next != nullptr) {
+        recursiveDelete_(node->next);
     }
-    head_ = nullptr;
-    tail_ = nullptr;
+    delete node;
 }
 
 // Destructor
 LinkedList::~LinkedList() {
-    LLNode* cur = head_;
-    LLNode* temp;
-    while (cur != nullptr) {
-        temp = cur->next;
-        delete cur;
-        cur = temp;
+    std::cout << "Destructor Invoked\n";
+    if (head_) {
+        recursiveDelete_(head_);
     }
-    head_ = nullptr;
-    tail_ = nullptr;
 }
 
-// TODO: Fix copy function
-LinkedList& LinkedList::copyList_(const LinkedList& other) {
-    head_ = new LLNode;
-    if (other.head_ != nullptr) {
-        head_->val = other.head_->val;
-    }
-
-    tail_ = other.tail_;
-    size_ = other.size_;
-    LLNode* cur = head_;
-
-    if (other.head_ != nullptr) {
-        LLNode *temp = other.head_->next;
-        while (temp != nullptr) {
-            cur->next = new LLNode(temp->val);
-            cur = cur->next;
-            cur->next = nullptr;
-            temp = temp->next;
-        }
-    }
+// Helper function copies the LinkedList provided as an argument,
+// performs a deep copy and returns the reference to the new LinkedList
+LinkedList& LinkedList::copyList_(LLNode* node) {
+    
     return *this;
 }
 
 // Copy constructor, performs a deep copy
 LinkedList::LinkedList(const LinkedList &other) {
-    head_ = new LLNode;
-    if (other.head_ != nullptr) {
-        head_->val = other.head_->val;
-    }
-
-    tail_ = other.tail_;
-    size_ = other.size_;
-    LLNode* cur = head_;
-
-    if (other.head_ != nullptr) {
-        LLNode *temp = other.head_->next;
-        while (temp != nullptr) {
-            cur->next = new LLNode(temp->val);
-            cur = cur->next;
-            cur->next = nullptr;
-            temp = temp->next;
+    std::cout << "Copy constructor Invoked\n";
+    if (other.head_ == nullptr) {
+        head_ = tail_ = nullptr;
+        size_ = 0;
+        return;
+    } else {
+        head_ = new LLNode(other.head_->val);
+        LLNode* cur = head_;
+        LLNode* other_next = other.head_->next;
+        
+        while(other_next) {
+            LLNode* cur_next = new LLNode(other_next->val);
+            cur->next = cur_next;
+            other_next = other_next->next;
+            cur = cur_next;
         }
+        
+        cur->next = nullptr;
+        tail_ = cur;
+        size_ = other.size_;
     }
 }
 
 // Assignment operator
 LinkedList &LinkedList::operator=(const LinkedList &other) {
-    deleteList_();
-
+    std::cout << "Assignment Operator Invoked\n";
+    if (head_) {
+        recursiveDelete_(head_);
+    }
+    
     if (&other != this) {
         head_ = other.head_;
         tail_ = other.tail_;
