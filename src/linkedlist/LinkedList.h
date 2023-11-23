@@ -8,6 +8,7 @@
 class LinkedList;
 
 #include "linkedlistnode/LLNode.h"
+#include <vector>
 
 class LinkedList {
 public:
