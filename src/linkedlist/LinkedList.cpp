@@ -2,8 +2,9 @@
 // Created by Tyler Sudol on 11/18/23.
 //
 
-#include <iostream>
 #include "LinkedList.h"
+#include <iostream>
+#include <vector>
 
 // Default constructor
 LinkedList::LinkedList() {
@@ -65,8 +66,9 @@ LinkedList::LinkedList(const LinkedList &other) {
 
 // Assignment operator
 LinkedList &LinkedList::operator=(const LinkedList &other) {
-    LinkedList temp(other);
-    std::swap(temp.head_, head_);
+    if (this != &other) {
+        copyList_(other);
+    }
     return *this;
 }
 

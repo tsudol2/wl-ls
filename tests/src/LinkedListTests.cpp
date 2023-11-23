@@ -58,15 +58,14 @@ TEST_F(LinkedListTest, CopyConstructorCheckDeepCopy) {
 }
 
 TEST_F(LinkedListTest, CopyConstructorCheckDeepCopyCont) {
-    LinkedList ll = ll2_;
+    LinkedList ll(ll2_);
     EXPECT_EQ(ll.toVector(), ll2_.toVector());
 }
 
-TEST_F(LinkedListTest, AssignmentOperator) {
+TEST_F(LinkedListTest, AssignmentOperatorDeepCopy) {
     LinkedList ll;
     ll = ll2_;
-    EXPECT_EQ(ll.toVector(), ll2_.toVector());
+    EXPECT_EQ(ll.toVector(), ll2Vector_);
     ll.insert(2);
-    ll.print();
-    ll2_.print();
+    EXPECT_FALSE(ll.toVector() == ll2Vector_);
 }

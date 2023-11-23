@@ -5,6 +5,8 @@
 #ifndef WL_LS_LLNODE_H
 #define WL_LS_LLNODE_H
 
+class LLNode;
+
 class LLNode {
 public:
     LLNode();
