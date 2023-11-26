@@ -10,6 +10,8 @@ class LinkedList;
 #include "linkedlistnode/LLNode.h"
 #include <vector>
 
+class LLNode;
+
 class LinkedList {
 public:
     LinkedList();
@@ -17,9 +19,9 @@ public:
     ~LinkedList();
     LinkedList(const LinkedList&);
     LinkedList& operator=(const LinkedList&);
-    bool isEmpty() const;
+    inline bool isEmpty() const { return (size_ == 0); };
     LinkedList& insert(int);
-    LinkedList& replaceAt(int);
+    LinkedList& replaceAt(int, int);
     int valueAt();
     std::vector<int> toVector();
     void print();

@@ -21,8 +21,8 @@ LinkedList::LinkedList(int val) {
 
 // Private helper function, recursively deletes the LinkedList and frees memory
 void LinkedList::recursiveDelete_(LLNode* node) {
-    if (node->next != nullptr) {
-        recursiveDelete_(node->next);
+    if (node->next() != nullptr) {
+        recursiveDelete_(node->next());
     }
     delete node;
 }
@@ -42,18 +42,18 @@ void LinkedList::copyList_(const LinkedList &other) {
         size_ = 0;
         return;
     } else {
-        head_ = new LLNode(other.head_->val);
+        head_ = new LLNode(other.head_->val());
         LLNode* cur = head_;
-        LLNode* other_next = other.head_->next;
+        LLNode* other_next = other.head_->next();
 
         while(other_next) {
-            LLNode* cur_next = new LLNode(other_next->val);
-            cur->next = cur_next;
-            other_next = other_next->next;
+            auto* cur_next = new LLNode(other_next->val());
+            cur->next(cur_next);
+            other_next = other_next->next();
             cur = cur_next;
         }
 
-        cur->next = nullptr;
+        cur->next(nullptr);
         tail_ = cur;
         size_ = other.size_;
     }
@@ -72,11 +72,6 @@ LinkedList &LinkedList::operator=(const LinkedList &other) {
     return *this;
 }
 
-// Returns true if list is empty
-bool LinkedList::isEmpty() const {
-    return (size_ == 0);
-}
-
 //
 // Arg val is inserted at the end of the list
 //
@@ -86,7 +81,7 @@ LinkedList &LinkedList::insert(int val) {
         head_ = newNode;
         tail_ = head_;
     } else {
-        tail_->next = newNode;
+        tail_->next(newNode);
         tail_ = newNode;
     }
     size_ += 1;
@@ -94,7 +89,7 @@ LinkedList &LinkedList::insert(int val) {
 }
 
 // TODO: implement
-LinkedList &LinkedList::replaceAt(int) {
+LinkedList &LinkedList::replaceAt(int, int) {
     return *this;
 }
 
@@ -113,8 +108,8 @@ std::vector<int> LinkedList::toVector() {
     std::vector<int> list;
     LLNode* cur = head_;
     while(cur != nullptr) {
-        list.push_back(cur->val);
-        cur = cur->next;
+        list.push_back(cur->val());
+        cur = cur->next();
     }
     return list;
 }
