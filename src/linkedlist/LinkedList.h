@@ -16,17 +16,22 @@ class LinkedList {
 public:
     LinkedList();
     explicit LinkedList(int);
+    explicit LinkedList(LLNode*);
     ~LinkedList();
     LinkedList(const LinkedList&);
     LinkedList& operator=(const LinkedList&);
     inline bool isEmpty() const { return (size_ == 0); };
-    LinkedList& insert(int);
-    LinkedList& replaceAt(int, int);
-    int valueAt();
-    std::vector<int> toVector();
+    LinkedList& insertInt(int);
+    LinkedList& insertLL(LLNode*);
+    LinkedList& replaceAtInt(int, int);
+    LinkedList& replaceAtLL(int, LLNode*);
+    int valueAtInt(int);
+    LLNode* valueAtLL(int);
+    std::vector<std::vector<int>> toVector();
     void print();
+    inline LLNode* head() { return head_; }
+    inline int size() const { return size_; }
 private:
-    void checkLinkedList_();
     void recursiveDelete_(LLNode*);
     void copyList_(const LinkedList &other);
 protected:

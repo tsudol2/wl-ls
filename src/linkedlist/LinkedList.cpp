@@ -12,8 +12,15 @@ LinkedList::LinkedList() {
     size_ = 0;
 }
 
-// Convenience constructor
+// Convenience constructor, inserts an integer
 LinkedList::LinkedList(int val) {
+    head_ = new LLNode(val);
+    tail_ = head_;
+    size_ = 1;
+}
+
+// Convenience constructor, inserts pointer to head of a LL
+LinkedList::LinkedList(LLNode* val) {
     head_ = new LLNode(val);
     tail_ = head_;
     size_ = 1;
@@ -42,15 +49,25 @@ void LinkedList::copyList_(const LinkedList &other) {
         size_ = 0;
         return;
     } else {
-        head_ = new LLNode(other.head_->val());
-        LLNode* cur = head_;
-        LLNode* other_next = other.head_->next();
+        if (other.head_->isInt()) {
+            head_ = new LLNode(other.head_->valInt());
+        } else {
+            head_ = new LLNode(other.head_->valLL());
+        }
+        LLNode *cur = head_;
+        LLNode *otherNext = other.head_->next();
 
-        while(other_next) {
-            auto* cur_next = new LLNode(other_next->val());
-            cur->next(cur_next);
-            other_next = other_next->next();
-            cur = cur_next;
+        while (otherNext) {
+            LLNode* curNext;
+            if (otherNext->isInt()) {
+                curNext = new LLNode(otherNext->valInt());
+            } else {
+                curNext = new LLNode(otherNext->valLL());
+            }
+
+            cur->next(curNext);
+            otherNext = otherNext->next();
+            cur = curNext;
         }
 
         cur->next(nullptr);
@@ -73,9 +90,9 @@ LinkedList &LinkedList::operator=(const LinkedList &other) {
 }
 
 //
-// Arg val is inserted at the end of the list
+// Int val is inserted at the end of the list
 //
-LinkedList &LinkedList::insert(int val) {
+LinkedList &LinkedList::insertInt(int val) {
     auto* newNode = new LLNode(val);
     if (isEmpty()) {
         head_ = newNode;
@@ -88,27 +105,107 @@ LinkedList &LinkedList::insert(int val) {
     return *this;
 }
 
-// TODO: implement
-LinkedList &LinkedList::replaceAt(int, int) {
+//
+// LinkedList val is inserted at the end of the list
+//
+LinkedList &LinkedList::insertLL(LLNode* val) {
+    auto* newNode = new LLNode(val);
+    if (isEmpty()) {
+        head_ = newNode;
+        tail_ = head_;
+    } else {
+        tail_->next(newNode);
+        tail_ = newNode;
+    }
+    size_ += 1;
     return *this;
 }
 
-// TODO: implement
-int LinkedList::valueAt() {
-    return 0;
+// Replace the element at provided index with the provided integer value
+LinkedList &LinkedList::replaceAtInt(int index, int value) {
+    LLNode* cur = head();
+    int i = 0;
+
+    while (cur != nullptr) {
+        if (i == index) {
+            cur->valInt(value);
+        }
+        cur = cur->next();
+        i++;
+    }
+
+    return *this;
 }
 
-// TODO: implement
-void LinkedList::checkLinkedList_() {
-    ;
+// Replace the element at provided index with the provided LLNode pointer value
+LinkedList &LinkedList::replaceAtLL(int index, LLNode* value) {
+    LLNode* cur = head();
+    int i = 0;
+
+    while (cur != nullptr) {
+        if (i == index) {
+            cur->valLL(value);
+        }
+        cur = cur->next();
+        i++;
+    }
+
+    return *this;
 }
 
-// Returns a vector containing all elements of the list
-std::vector<int> LinkedList::toVector() {
-    std::vector<int> list;
-    LLNode* cur = head_;
+// The integer value stored at the index is returned
+int LinkedList::valueAtInt(int index) {
+    LLNode* cur = head();
+    int i = 0;
+
+    while (cur != nullptr) {
+        if (i == index) {
+            return cur->valInt();
+        }
+        cur = cur->next();
+        i++;
+    }
+
+    // error, value not found
+    return -1;
+}
+
+// The LLNode pointer at index is returned
+LLNode* LinkedList::valueAtLL(int index) {
+    LLNode* cur = head();
+    int i = 0;
+
+    while (cur != nullptr) {
+        if (i == index) {
+            return cur->valLL();
+        }
+        cur = cur->next();
+        i++;
+    }
+
+    // error, value not found
+    return nullptr;
+}
+
+// Returns a vector containing all elements of the list stored in their own vector
+std::vector<std::vector<int>> LinkedList::toVector() {
+    std::vector<std::vector<int>> list;
+    LLNode* cur = head();
     while(cur != nullptr) {
-        list.push_back(cur->val());
+        if (cur->isInt()) {
+            std::vector<int> elem = {cur->valInt()};
+            list.push_back(elem);
+        } else {
+            // create a temporary LLNode to convert nested list to vector
+            LLNode* temp = cur->valLL();
+            std::vector<int> elem;
+            while (temp != nullptr) {
+                int v = temp->valInt();
+                elem.push_back(v);
+                temp = temp->next();
+            }
+            list.push_back(elem);
+        }
         cur = cur->next();
     }
     return list;
@@ -116,9 +213,19 @@ std::vector<int> LinkedList::toVector() {
 
 // Print list to std out
 void LinkedList::print() {
-    std::vector<int> list = toVector();
-    for (auto& e : list) {
-        std::cout << e << ' ';
+    std::vector<std::vector<int>> list = toVector();
+    std::cout << '[';
+    for (auto e : list) {
+        if (e == list.front() && e.size() > 1) { std::cout << '['; }
+        for (auto f : e) {
+            std::cout << f;
+            if (f != e.back()) { std::cout << ", "; }
+        }
+        if (e != list.back()) {
+            std::cout << ", ";
+        } else if (e.size() > 1) {
+            std::cout << ']';
+        }
     }
-    std::cout << std::endl;
+    std::cout << ']' << std::endl;
 }

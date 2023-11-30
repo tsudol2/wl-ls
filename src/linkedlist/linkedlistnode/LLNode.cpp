@@ -6,12 +6,21 @@
 
 // Default Constructor
 LLNode::LLNode() {
-    val_ = 0;
+    valInt_ = 0;
     next_ = nullptr;
+    isInt_ = true;
 }
 
 // Convenience Constructor
 LLNode::LLNode(int x) {
-    val_ = x;
+    valInt_ = x;
     next_ = nullptr;
+    isInt_ = true;
+}
+
+// Convenience Constructor
+LLNode::LLNode(LLNode* x) {
+    valLL_ = x;
+    next_ = nullptr;
+    isInt_ = false;
 }
