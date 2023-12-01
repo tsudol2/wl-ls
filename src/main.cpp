@@ -10,8 +10,7 @@
 #include "weirdlanguage/WLLanguageSystem.h"
 
 int main(int argc, char * argv[]) {
-//    std::cout << argv[0];
-//    std::cin.get();
+    std::cout << "Current path: " << argv[0] << std::endl;
 
     std::cout << "Weird Language Language System" << std::endl;
     std::cout << "Enter file path to .wl input file: (data/input/...)" << std::endl;
@@ -22,7 +21,7 @@ int main(int argc, char * argv[]) {
 
     // NOTE: This is needed when running the project from the build directory due to the project structure.
     // find a fix if possible
-    path = "../../../data/input.wl";
+//    path = "../../../data/input.wl";
 
     std::ifstream inFile(path);
     if (inFile.is_open()) {
