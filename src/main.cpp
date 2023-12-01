@@ -22,7 +22,7 @@ int main(int argc, char * argv[]) {
 
     // for ease of use, remove before submitting
     // NOTE: This is needed when running the project from the build directory due to the project structure.
-    path = "../../../data/input.wl";
+//    path = "../../../data/input.wl";
 
     WLLanguageSystem ls;
 
