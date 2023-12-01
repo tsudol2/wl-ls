@@ -3,7 +3,6 @@ project(wl-gtest)
 
 add_subdirectory(lib)
 
-
 include_directories(${WLLS_HEADERS_DIR})
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
