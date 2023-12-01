@@ -3,11 +3,16 @@
 //
 
 #include "VarListInstruction.h"
+#include <vector>
 
 void VarListInstruction::execute() {
-    WLCommand::execute();
+    receiver_->createVarList(var_, val_);
 }
 
 void VarListInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args.front();
+    args.erase(args.begin());
+    for (auto e : args) {
+        val_.push_back(stoi(e));
+    }
 }

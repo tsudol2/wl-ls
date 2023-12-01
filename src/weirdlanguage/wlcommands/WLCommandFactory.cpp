@@ -7,6 +7,16 @@
 
 WLCommandFactory::WLCommandFactory() {
     instrMap_.emplace("VARINT", new VarIntInstruction);
+    instrMap_.emplace("VARLIST", new VarListInstruction);
+    instrMap_.emplace("COMBINE", new CombineInstruction);
+    instrMap_.emplace("GET", new GetInstruction);
+    instrMap_.emplace("SET", new SetInstruction);
+    instrMap_.emplace("COPY", new CopyInstruction);
+    instrMap_.emplace("CHS", new ChsInstruction);
+    instrMap_.emplace("ADD", new AddInstruction);
+    instrMap_.emplace("GOTO", new GotoInstruction);
+    instrMap_.emplace("IF", new IfInstruction);
+    instrMap_.emplace("HLT", new HltInstruction);
 }
 
 // Invoke a command object's execute method given an instruction's key

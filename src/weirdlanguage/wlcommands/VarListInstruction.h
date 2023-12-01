@@ -9,11 +9,11 @@
 
 class VarListInstruction: public WLCommand {
 public:
-    VarListInstruction(): receiver_(nullptr), val_(0) {};
+    VarListInstruction(): receiver_(nullptr), val_({}) {};
 private:
     WLReceiver* receiver_;
     std::string var_;
-    int val_;
+    std::vector<int> val_;
     void execute() override;
     inline void receiver(WLReceiver* r) override { receiver_ = r; }
     void args(std::vector<std::string> args) override;
