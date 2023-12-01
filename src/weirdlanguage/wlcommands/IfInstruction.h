@@ -16,7 +16,7 @@ public:
 private:
     WLReceiver* receiver_;
     std::string var_;
-    int val_;
+    int line_;
 };
 
 #endif //WL_LS_IFINSTRUCTION_H

@@ -5,9 +5,10 @@
 #include "IfInstruction.h"
 
 void IfInstruction::execute() {
-    WLCommand::execute();
+    receiver_->ifInstr(var_, line_);
 }
 
 void IfInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args[0];
+    line_ = stoi(args[1]);
 }

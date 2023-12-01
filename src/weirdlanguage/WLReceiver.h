@@ -15,15 +15,15 @@ public:
     inline int pc() const { return pc_; }
     void printData();
     void createVarInt(const std::string&, int);
-    void createVarList(const std::string&, std::vector<int>);
-    void combine(std::vector<int>, std::vector<int>);
-    void copy(std::vector<int>, std::vector<int>);
-    void get(const std::string&, int, std::vector<int>);
-    void set(const std::string&, int, std::vector<int>);
+    void createVarList(const std::string&, const std::vector<int>&);
+    void combine(const std::string &, const std::string &);
+    void copy(const std::string &, const std::string &);
+    void get(const std::string&, int, std::string &);
+    void set(const std::string&, int, const std::string &);
     void chs(const std::string&);
     void add(const std::string&, const std::string&);
     void goTo(int);
-    void ifInstr(int, const std::string&);
+    void ifInstr(const std::string &, int);
     void hlt();
 private:
     std::map<std::string, LinkedList> programData_;

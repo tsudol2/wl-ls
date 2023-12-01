@@ -5,9 +5,10 @@
 #include "CopyInstruction.h"
 
 void CopyInstruction::execute() {
-    WLCommand::execute();
+    receiver_->copy(list1_, list2_);
 }
 
 void CopyInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    list1_ = args[0];
+    list2_ = args[1];
 }

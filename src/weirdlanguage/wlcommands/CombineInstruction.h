@@ -9,14 +9,14 @@
 
 class CombineInstruction: public WLCommand {
 public:
-    CombineInstruction() = default;
+    CombineInstruction():receiver_(nullptr) {};
     void execute() override;
     inline void receiver(WLReceiver* r) override { receiver_ = r; }
     void args(std::vector<std::string> args) override;
 private:
     WLReceiver* receiver_;
     std::string var_;
-    int val_;
+    std::string var2_;
 };
 
 #endif //WL_LS_COMBINEINSTRUCTION_H

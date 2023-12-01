@@ -5,9 +5,10 @@
 #include "AddInstruction.h"
 
 void AddInstruction::execute() {
-    WLCommand::execute();
+    receiver_->add(var1_, var2_);
 }
 
 void AddInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var1_ = args[0];
+    var2_ = args[1];
 }

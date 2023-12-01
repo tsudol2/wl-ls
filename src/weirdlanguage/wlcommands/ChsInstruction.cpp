@@ -5,9 +5,9 @@
 #include "ChsInstruction.h"
 
 void ChsInstruction::execute() {
-    WLCommand::execute();
+    receiver_->chs(var_);
 }
 
 void ChsInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args[0];
 }

@@ -9,14 +9,13 @@
 
 class GotoInstruction: public WLCommand {
 public:
-    GotoInstruction() = default;
+    GotoInstruction(): receiver_ (nullptr), line_(0) {};
     void execute() override;
     inline void receiver(WLReceiver* r) override { receiver_ = r; }
     void args(std::vector<std::string> args) override;
 private:
     WLReceiver* receiver_;
-    std::string var_;
-    int val_;
+    int line_;
 };
 
 #endif //WL_LS_GOTOINSTRUCTION_H

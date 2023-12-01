@@ -12,7 +12,7 @@ void VarListInstruction::execute() {
 void VarListInstruction::args(std::vector<std::string> args) {
     var_ = args.front();
     args.erase(args.begin());
-    for (auto e : args) {
+    for (const auto& e : args) {
         val_.push_back(stoi(e));
     }
 }

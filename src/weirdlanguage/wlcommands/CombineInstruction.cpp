@@ -5,9 +5,10 @@
 #include "CombineInstruction.h"
 
 void CombineInstruction::execute() {
-    WLCommand::execute();
+    receiver_->combine(var_, var2_);
 }
 
 void CombineInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args.front();
+    var2_ = args.at(1);
 }

@@ -5,9 +5,9 @@
 #include "HltInstruction.h"
 
 void HltInstruction::execute() {
-    WLCommand::execute();
+    receiver_->hlt();
 }
 
 void HltInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+
 }

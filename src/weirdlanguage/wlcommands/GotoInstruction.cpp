@@ -5,9 +5,9 @@
 #include "GotoInstruction.h"
 
 void GotoInstruction::execute() {
-    WLCommand::execute();
+    receiver_->goTo(line_);
 }
 
 void GotoInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    line_ = stoi(args[0]);
 }

@@ -5,9 +5,11 @@
 #include "GetInstruction.h"
 
 void GetInstruction::execute() {
-    WLCommand::execute();
+    receiver_->get(var_, index_, list_);
 }
 
 void GetInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args.at(0);
+    index_ = stoi(args.at(1));
+    list_ = args.at(2);
 }

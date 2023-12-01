@@ -31,6 +31,7 @@ public:
     void print();
     inline LLNode* head() { return head_; }
     inline int size() const { return size_; }
+    bool isInt();
 private:
     void recursiveDelete_(LLNode*);
     void copyList_(const LinkedList &other);

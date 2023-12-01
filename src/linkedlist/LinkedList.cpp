@@ -223,3 +223,7 @@ void LinkedList::print() {
     }
     std::cout << ']' << std::endl;
 }
+
+bool LinkedList::isInt() {
+    return head_->isInt();
+}

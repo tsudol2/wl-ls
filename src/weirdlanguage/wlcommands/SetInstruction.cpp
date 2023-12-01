@@ -5,9 +5,11 @@
 #include "SetInstruction.h"
 
 void SetInstruction::execute() {
-    WLCommand::execute();
+    receiver_->set(var_, index_, listName_);
 }
 
 void SetInstruction::args(std::vector<std::string> args) {
-    WLCommand::args(args);
+    var_ = args[0];
+    index_ = stoi(args[1]);
+    listName_ = args[2];
 }
