@@ -14,7 +14,7 @@ class LLNode;
 
 class LinkedList {
 public:
-    LinkedList();
+    LinkedList(): head_(nullptr), tail_(nullptr), size_(0) {};
     explicit LinkedList(int);
     explicit LinkedList(LLNode*);
     ~LinkedList();

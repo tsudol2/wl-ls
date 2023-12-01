@@ -1,18 +1,26 @@
 //
-// Created by tyler sudol on 11/30/2023.
+// Created by Tyler Sudol on 11/30/2023.
 //
 
 #ifndef WL_LS_VARINTINSTRUCTION_H
 #define WL_LS_VARINTINSTRUCTION_H
 
 #include "WLCommand.h"
+#include "../WLReceiver.h"
 #include <string>
+#include <utility>
 
 class VarIntInstruction: public WLCommand {
 public:
-    VarIntInstruction();
-    VarIntInstruction(std::string, int);
-    void execute();
+    VarIntInstruction(): receiver_(nullptr), val_(0) {};
+    explicit VarIntInstruction(WLReceiver* r): receiver_(r), val_(0) {};
+    void execute() override;
+    inline void receiver(WLReceiver* r) override { receiver_ = r; }
+    void args(std::vector<std::string> args) override;
+private:
+    WLReceiver* receiver_;
+    std::string var_;
+    int val_;
 };
 
 #endif //WL_LS_VARINTINSTRUCTION_H

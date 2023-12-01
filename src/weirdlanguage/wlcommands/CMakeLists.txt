@@ -8,12 +8,15 @@ set(WLCOMMANDS_SOURCE_FILES
     WLCommand.h
     VarIntInstruction.cpp
     VarIntInstruction.h
+        VarListInstruction.cpp
+        VarListInstruction.h
 )
 
 set(WLCOMMANDS_HEADER_FILES
     WLCommandFactory.h
     WLCommand.h
     VarIntInstruction.h
+    VarListInstruction.h
 )
 
 add_library(${PROJECT_NAME} SHARED STATIC ${WLCOMMANDS_SOURCE_FILES})

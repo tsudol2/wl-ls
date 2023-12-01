@@ -34,7 +34,7 @@ public:
     }
 
 private:
-    LLNode();
+    LLNode():valInt_(0), next_(nullptr), isInt_(true) {};
     explicit LLNode(int);
     explicit LLNode(LLNode*);
     std::vector<int> toVector_();

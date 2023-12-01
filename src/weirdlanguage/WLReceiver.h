@@ -6,16 +6,18 @@
 #define WL_LS_WLRECEIVER_H
 
 #include <string>
+#include <map>
 #include "../linkedlist/LinkedList.h"
 
 class WLReceiver {
 public:
-    WLReceiver();
+    WLReceiver(): programData_({}), pc_(0) {};
+    inline int pc() const { return pc_; }
     void printData();
-    void createVarInt(std::string, int);
+    void createVarInt(const std::string&, int);
     // add all instructions
 private:
-    LinkedList programData_;
+    std::map<std::string, LinkedList> programData_;
     int pc_;
 };
 

@@ -1,9 +1,10 @@
-# Weird Language Language System in C++
+# WeirdLanguage Language System in C++
 ## CS474 Project 4 - by Tyler Sudol
 
 Note: The executable directory changes depending on how the project is run, and input file paths
-need to be adjusted accordingly.
-
+need to be adjusted accordingly.  
+(should be src in build directory if running in clion, bin directory if running command line scripts)
+  
 This project was built using CLion, and can be opened and run from CLion, or one of the following:
 
 Command line scripts:
@@ -20,7 +21,3 @@ Manually run commands from project root directory:
     cd ..
     ./bin/wl-ls
     ./bin/wl-gtest
-
-Project can also be configured for xcode using the script:
-
-    ./configure_xcode.sh

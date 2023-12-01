@@ -6,12 +6,6 @@
 #include <iostream>
 #include <vector>
 
-// Default constructor
-LinkedList::LinkedList() {
-    head_ = tail_ = nullptr;
-    size_ = 0;
-}
-
 // Convenience constructor, inserts an integer
 LinkedList::LinkedList(int val) {
     head_ = new LLNode(val);
