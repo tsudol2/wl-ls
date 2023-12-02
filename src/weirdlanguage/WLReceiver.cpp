@@ -86,7 +86,8 @@ void WLReceiver::set(const std::string &var, int index, const std::string &listN
 
     // check if var is stored as a VARLIST or VARINT
     if (programData_.count(var)){
-        if (programData_.at(var).isInt()) {
+        auto e = programData_.at(var);
+        if (e.isInt()) {
             list.replaceAtInt(index, programData_[var].valueAtInt(index));
         } else {
             list.replaceAtLL(index, programData_[var].valueAtLL(index));

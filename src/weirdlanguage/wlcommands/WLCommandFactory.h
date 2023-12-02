@@ -23,6 +23,7 @@
 class WLCommandFactory {
 public:
     WLCommandFactory();
+    ~WLCommandFactory();
     WLCommand* getCommand(const std::string &key, WLReceiver*, std::vector<std::string>);
 private:
     std::map<std::string, WLCommand*> instrMap_;

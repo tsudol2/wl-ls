@@ -19,6 +19,10 @@ WLCommandFactory::WLCommandFactory() {
     instrMap_.emplace("HLT", new HltInstruction);
 }
 
+WLCommandFactory::~WLCommandFactory() {
+    instrMap_.clear();
+}
+
 // Invoke a command object's execute method given an instruction's key
 WLCommand* WLCommandFactory::getCommand(const std::string& key, WLReceiver* receiver, std::vector<std::string> args) {
     auto instr = instrMap_[key];
