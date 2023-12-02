@@ -20,7 +20,10 @@ WLCommandFactory::WLCommandFactory() {
 }
 
 WLCommandFactory::~WLCommandFactory() {
-    instrMap_.clear();
+    // free the allocated WLCommand pointers
+    for (const auto& e : instrMap_) {
+        delete e.second;
+    }
 }
 
 // Invoke a command object's execute method given an instruction's key
