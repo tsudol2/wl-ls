@@ -5,6 +5,13 @@
 #include "WLReceiver.h"
 #include <iostream>
 
+WLReceiver::~WLReceiver() {
+//    for (auto e : programData_) {
+//        delete e.second;
+//    }
+    programData_.clear();
+}
+
 void WLReceiver::printData() {
     std::cout << "Program memory (var: data):" << std::endl;
     for (auto e : programData_) {

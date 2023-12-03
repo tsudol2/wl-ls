@@ -12,6 +12,7 @@
 class WLReceiver {
 public:
     WLReceiver(): programData_({}), pc_(0) {};
+    ~WLReceiver();
     inline int pc() const { return pc_; }
     void printData();
     void createVarInt(const std::string&, int);
