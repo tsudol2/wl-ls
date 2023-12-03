@@ -13,7 +13,6 @@
 class VarIntInstruction: public WLCommand {
 public:
     VarIntInstruction(): receiver_(nullptr), val_(0) {};
-    ~VarIntInstruction();
     void execute() override;
     inline void receiver(WLReceiver* r) override { receiver_ = r; }
     void args(std::vector<std::string> args) override;

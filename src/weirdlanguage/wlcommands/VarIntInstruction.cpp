@@ -12,7 +12,3 @@ void VarIntInstruction::args(std::vector<std::string> args) {
     var_ = args.front();
     val_ = stoi(args.at(1));
 }
-
-VarIntInstruction::~VarIntInstruction() {
-    delete receiver_;
-}
