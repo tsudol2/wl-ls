@@ -22,11 +22,14 @@
 
 class WLCommandFactory {
 public:
-    WLCommandFactory();
+    explicit WLCommandFactory();
     ~WLCommandFactory();
+//    WLCommandFactory(const WLCommandFactory&) = delete;
+//    WLCommandFactory& operator=(const WLCommandFactory&) = delete;
     WLCommand* getCommand(const std::string &key, WLReceiver*, std::vector<std::string>);
 private:
-    std::map<std::string, WLCommand*> instrMap_;
+//    std::map<std::string, WLCommand*> instrMap_;
+    std::map<std::string, std::shared_ptr<WLCommand>> instrMap_;
 };
 
 #endif //WL_LS_WLCOMMANDFACTORY_H
